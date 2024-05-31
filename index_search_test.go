@@ -652,7 +652,7 @@ func TestIndex_SearchFacets(t *testing.T) {
 			i := c.Index(tt.args.UID)
 			t.Cleanup(cleanup(c))
 
-			updateFilter, err := i.UpdateFilterableAttributes(&tt.args.filterableAttributes)
+			updateFilter, err := i.UpdateFilterableAttributes(tt.args.filterableAttributes)
 			require.NoError(t, err)
 			testWaitForTask(t, i, updateFilter)
 
@@ -979,7 +979,7 @@ func TestIndex_SearchWithFilters(t *testing.T) {
 			i := c.Index(tt.args.UID)
 			t.Cleanup(cleanup(c))
 
-			updateFilter, err := i.UpdateFilterableAttributes(&tt.args.filterableAttributes)
+			updateFilter, err := i.UpdateFilterableAttributes(tt.args.filterableAttributes)
 			require.NoError(t, err)
 			testWaitForTask(t, i, updateFilter)
 
@@ -1216,7 +1216,7 @@ func TestIndex_SearchWithSort(t *testing.T) {
 			i := c.Index(tt.args.UID)
 			t.Cleanup(cleanup(c))
 
-			updateFilter, err := i.UpdateSortableAttributes(&tt.args.sortableAttributes)
+			updateFilter, err := i.UpdateSortableAttributes(tt.args.sortableAttributes)
 			require.NoError(t, err)
 			testWaitForTask(t, i, updateFilter)
 
@@ -1406,13 +1406,13 @@ func TestIndex_SearchOnNestedFileds(t *testing.T) {
 			t.Cleanup(cleanup(c))
 
 			if tt.args.searchableAttribute != nil {
-				gotTask, err := i.UpdateSearchableAttributes(&tt.args.searchableAttribute)
+				gotTask, err := i.UpdateSearchableAttributes(tt.args.searchableAttribute)
 				require.NoError(t, err)
 				testWaitForTask(t, i, gotTask)
 			}
 
 			if tt.args.sortableAttribute != nil {
-				gotTask, err := i.UpdateSortableAttributes(&tt.args.sortableAttribute)
+				gotTask, err := i.UpdateSortableAttributes(tt.args.sortableAttribute)
 				require.NoError(t, err)
 				testWaitForTask(t, i, gotTask)
 			}

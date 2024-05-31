@@ -201,7 +201,7 @@ JSON output:
 If you want to enable filtering, you must add your attributes to the `filterableAttributes` index setting.
 
 ```go
-task, err := index.UpdateFilterableAttributes(&[]string{"id", "genres"})
+task, err := index.UpdateFilterableAttributes([]string{"id", "genres"})
 ```
 
 You only need to perform this operation once.

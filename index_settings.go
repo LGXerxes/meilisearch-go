@@ -53,8 +53,8 @@ func (i Index) ResetSettings() (resp *TaskInfo, err error) {
 	return resp, nil
 }
 
-func (i Index) GetRankingRules() (resp *[]string, err error) {
-	resp = &[]string{}
+func (i Index) GetRankingRules() (resp []string, err error) {
+	resp = []string{}
 	req := internalRequest{
 		endpoint:            "/indexes/" + i.UID + "/settings/ranking-rules",
 		method:              http.MethodGet,
@@ -69,7 +69,7 @@ func (i Index) GetRankingRules() (resp *[]string, err error) {
 	return resp, nil
 }
 
-func (i Index) UpdateRankingRules(request *[]string) (resp *TaskInfo, err error) {
+func (i Index) UpdateRankingRules(request []string) (resp *TaskInfo, err error) {
 	resp = &TaskInfo{}
 	req := internalRequest{
 		endpoint:            "/indexes/" + i.UID + "/settings/ranking-rules",
@@ -152,8 +152,8 @@ func (i Index) ResetDistinctAttribute() (resp *TaskInfo, err error) {
 	return resp, nil
 }
 
-func (i Index) GetSearchableAttributes() (resp *[]string, err error) {
-	resp = &[]string{}
+func (i Index) GetSearchableAttributes() (resp []string, err error) {
+	resp = []string{}
 	req := internalRequest{
 		endpoint:            "/indexes/" + i.UID + "/settings/searchable-attributes",
 		method:              http.MethodGet,
@@ -168,7 +168,7 @@ func (i Index) GetSearchableAttributes() (resp *[]string, err error) {
 	return resp, nil
 }
 
-func (i Index) UpdateSearchableAttributes(request *[]string) (resp *TaskInfo, err error) {
+func (i Index) UpdateSearchableAttributes(request []string) (resp *TaskInfo, err error) {
 	resp = &TaskInfo{}
 	req := internalRequest{
 		endpoint:            "/indexes/" + i.UID + "/settings/searchable-attributes",
@@ -201,8 +201,8 @@ func (i Index) ResetSearchableAttributes() (resp *TaskInfo, err error) {
 	return resp, nil
 }
 
-func (i Index) GetDisplayedAttributes() (resp *[]string, err error) {
-	resp = &[]string{}
+func (i Index) GetDisplayedAttributes() (resp []string, err error) {
+	resp = []string{}
 	req := internalRequest{
 		endpoint:            "/indexes/" + i.UID + "/settings/displayed-attributes",
 		method:              http.MethodGet,
@@ -217,7 +217,7 @@ func (i Index) GetDisplayedAttributes() (resp *[]string, err error) {
 	return resp, nil
 }
 
-func (i Index) UpdateDisplayedAttributes(request *[]string) (resp *TaskInfo, err error) {
+func (i Index) UpdateDisplayedAttributes(request []string) (resp *TaskInfo, err error) {
 	resp = &TaskInfo{}
 	req := internalRequest{
 		endpoint:            "/indexes/" + i.UID + "/settings/displayed-attributes",
@@ -250,8 +250,8 @@ func (i Index) ResetDisplayedAttributes() (resp *TaskInfo, err error) {
 	return resp, nil
 }
 
-func (i Index) GetStopWords() (resp *[]string, err error) {
-	resp = &[]string{}
+func (i Index) GetStopWords() (resp []string, err error) {
+	resp = []string{}
 	req := internalRequest{
 		endpoint:            "/indexes/" + i.UID + "/settings/stop-words",
 		method:              http.MethodGet,
@@ -266,7 +266,7 @@ func (i Index) GetStopWords() (resp *[]string, err error) {
 	return resp, nil
 }
 
-func (i Index) UpdateStopWords(request *[]string) (resp *TaskInfo, err error) {
+func (i Index) UpdateStopWords(request []string) (resp *TaskInfo, err error) {
 	resp = &TaskInfo{}
 	req := internalRequest{
 		endpoint:            "/indexes/" + i.UID + "/settings/stop-words",
@@ -348,8 +348,8 @@ func (i Index) ResetSynonyms() (resp *TaskInfo, err error) {
 	return resp, nil
 }
 
-func (i Index) GetFilterableAttributes() (resp *[]string, err error) {
-	resp = &[]string{}
+func (i Index) GetFilterableAttributes() (resp []string, err error) {
+	resp = []string{}
 	req := internalRequest{
 		endpoint:            "/indexes/" + i.UID + "/settings/filterable-attributes",
 		method:              http.MethodGet,
@@ -364,13 +364,13 @@ func (i Index) GetFilterableAttributes() (resp *[]string, err error) {
 	return resp, nil
 }
 
-func (i Index) UpdateFilterableAttributes(request *[]string) (resp *TaskInfo, err error) {
+func (i Index) UpdateFilterableAttributes(request []string) (resp *TaskInfo, err error) {
 	resp = &TaskInfo{}
 	req := internalRequest{
 		endpoint:            "/indexes/" + i.UID + "/settings/filterable-attributes",
 		method:              http.MethodPut,
 		contentType:         contentTypeJSON,
-		withRequest:         &request,
+		withRequest:         request,
 		withResponse:        resp,
 		acceptedStatusCodes: []int{http.StatusAccepted},
 		functionName:        "UpdateFilterableAttributes",
@@ -397,8 +397,8 @@ func (i Index) ResetFilterableAttributes() (resp *TaskInfo, err error) {
 	return resp, nil
 }
 
-func (i Index) GetSortableAttributes() (resp *[]string, err error) {
-	resp = &[]string{}
+func (i Index) GetSortableAttributes() (resp []string, err error) {
+	resp = []string{}
 	req := internalRequest{
 		endpoint:            "/indexes/" + i.UID + "/settings/sortable-attributes",
 		method:              http.MethodGet,
@@ -413,7 +413,7 @@ func (i Index) GetSortableAttributes() (resp *[]string, err error) {
 	return resp, nil
 }
 
-func (i Index) UpdateSortableAttributes(request *[]string) (resp *TaskInfo, err error) {
+func (i Index) UpdateSortableAttributes(request []string) (resp *TaskInfo, err error) {
 	resp = &TaskInfo{}
 	req := internalRequest{
 		endpoint:            "/indexes/" + i.UID + "/settings/sortable-attributes",

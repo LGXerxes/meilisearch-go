@@ -1484,7 +1484,7 @@ func TestIndex_DeleteDocumentsByFilter(t *testing.T) {
 			testWaitForTask(t, i, gotAddResp)
 
 			if tt.args.filterToApply != nil && len(tt.args.filterToApply) != 0 {
-				gotTask, err := i.UpdateFilterableAttributes(&tt.args.filterToApply)
+				gotTask, err := i.UpdateFilterableAttributes(tt.args.filterToApply)
 				require.NoError(t, err)
 				testWaitForTask(t, i, gotTask)
 			}
@@ -1727,7 +1727,7 @@ func TestIndex_GetDocuments(t *testing.T) {
 			SetUpIndexForFaceting()
 
 			if tt.args.request != nil && tt.args.request.Filter != nil {
-				gotTask, err := i.UpdateFilterableAttributes(&tt.args.filter)
+				gotTask, err := i.UpdateFilterableAttributes(tt.args.filter)
 				require.NoError(t, err)
 				testWaitForTask(t, i, gotTask)
 			}

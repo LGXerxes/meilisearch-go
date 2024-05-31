@@ -651,7 +651,7 @@ getting_started_pagination: |-
       MaxTotalHits: 500,
   })
 filtering_update_settings_1: |-
-  resp, err := client.Index("movies").UpdateFilterableAttributes(&[]string{
+  resp, err := client.Index("movies").UpdateFilterableAttributes([]string{
     "director",
     "genres",
   })
