@@ -48,9 +48,11 @@ func TestIndex_SearchRaw(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			SetUpIndexForFaceting()
+			i, err := SetUpIndexForFaceting(tt.args.UID)
+			if err != nil {
+				t.Fatal(err)
+			}
 			c := tt.args.client
-			i := c.Index(tt.args.UID)
 			t.Cleanup(cleanup(c))
 
 			gotRaw, err := i.SearchRaw(tt.args.query, tt.args.request)
@@ -482,9 +484,11 @@ func TestIndex_Search(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			SetUpIndexForFaceting()
+			i, err := SetUpIndexForFaceting(tt.args.UID)
+			if err != nil {
+				t.Fatal(err)
+			}
 			c := tt.args.client
-			i := c.Index(tt.args.UID)
 			t.Cleanup(cleanup(c))
 
 			got, err := i.Search(tt.args.query, tt.args.request)
@@ -647,9 +651,11 @@ func TestIndex_SearchFacets(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			SetUpIndexForFaceting()
+			i, err := SetUpIndexForFaceting(tt.args.UID)
+			if err != nil {
+				t.Fatal(err)
+			}
 			c := tt.args.client
-			i := c.Index(tt.args.UID)
 			t.Cleanup(cleanup(c))
 
 			updateFilter, err := i.UpdateFilterableAttributes(tt.args.filterableAttributes)
@@ -974,9 +980,11 @@ func TestIndex_SearchWithFilters(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			SetUpIndexForFaceting()
+			i, err := SetUpIndexForFaceting(tt.args.UID)
+			if err != nil {
+				t.Fatal(err)
+			}
 			c := tt.args.client
-			i := c.Index(tt.args.UID)
 			t.Cleanup(cleanup(c))
 
 			updateFilter, err := i.UpdateFilterableAttributes(tt.args.filterableAttributes)
@@ -1211,9 +1219,11 @@ func TestIndex_SearchWithSort(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			SetUpIndexForFaceting()
+			i, err := SetUpIndexForFaceting(tt.args.UID)
+			if err != nil {
+				t.Fatal(err)
+			}
 			c := tt.args.client
-			i := c.Index(tt.args.UID)
 			t.Cleanup(cleanup(c))
 
 			updateFilter, err := i.UpdateSortableAttributes(tt.args.sortableAttributes)
@@ -1551,9 +1561,11 @@ func TestIndex_SearchWithPagination(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			SetUpIndexForFaceting()
+			i, err := SetUpIndexForFaceting(tt.args.UID)
+			if err != nil {
+				t.Fatal(err)
+			}
 			c := tt.args.client
-			i := c.Index(tt.args.UID)
 			t.Cleanup(cleanup(c))
 
 			got, err := i.Search(tt.args.query, tt.args.request)
@@ -1589,11 +1601,12 @@ func TestIndex_SearchWithShowRankingScore(t *testing.T) {
 			ShowRankingScore: true,
 		},
 	}
-	SetUpIndexForFaceting()
+	i, err := SetUpIndexForFaceting(testArg.UID)
+	if err != nil {
+		t.Fatal(err)
+	}
 	c := testArg.client
-	i := c.Index(testArg.UID)
 	t.Cleanup(cleanup(c))
-
 	got, err := i.Search(testArg.query, &testArg.request)
 	require.NoError(t, err)
 	require.NotNil(t, got.Hits[0].(map[string]interface{})["_rankingScore"])
@@ -1615,9 +1628,11 @@ func TestIndex_SearchWithShowRankingScoreDetails(t *testing.T) {
 			ShowRankingScoreDetails: true,
 		},
 	}
-	SetUpIndexForFaceting()
+	i, err := SetUpIndexForFaceting(testArg.UID)
+	if err != nil {
+		t.Fatal(err)
+	}
 	c := testArg.client
-	i := c.Index(testArg.UID)
 	t.Cleanup(cleanup(c))
 
 	got, err := i.Search(testArg.query, &testArg.request)

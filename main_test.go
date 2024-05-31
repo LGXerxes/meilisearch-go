@@ -142,7 +142,8 @@ func SetUpIndexWithVector(indexUID string) (resp *Index, err error) {
 		method:      http.MethodPatch,
 		contentType: "application/json",
 		withRequest: map[string]interface{}{
-			"vectorStore": true,
+			"vectorStore":  true,
+			"scoreDetails": true,
 		},
 	}
 
@@ -241,12 +242,12 @@ func SetUpIndexWithNestedFields(indexUID string) {
 	}
 }
 
-func SetUpIndexForFaceting() {
+func SetUpIndexForFaceting(indexUID string) (*Index, error) {
 	client := NewClient(ClientConfig{
 		Host:   getenv("MEILISEARCH_URL", "http://localhost:7700"),
 		APIKey: masterKey,
 	})
-	index := client.Index("indexUID")
+	index := client.Index(indexUID)
 
 	booksTest := []docTestBooks{
 		{BookID: 123, Title: "Pride and Prejudice", Tag: "Romance", Year: 1813},
@@ -279,10 +280,11 @@ func SetUpIndexForFaceting() {
 	if finalTask.Status != "succeeded" {
 		os.Exit(1)
 	}
+	return index, nil
 }
 
 var (
-	masterKey     = "masterKey"
+	masterKey     = "meilisearchmeilisearchmeilisearchmeilisearch"
 	defaultClient = NewClient(ClientConfig{
 		Host:   getenv("MEILISEARCH_URL", "http://localhost:7700"),
 		APIKey: masterKey,

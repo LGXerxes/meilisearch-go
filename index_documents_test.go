@@ -1722,9 +1722,9 @@ func TestIndex_GetDocuments(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			c := tt.args.client
-			i := c.Index("indexUID")
 			t.Cleanup(cleanup(c))
-			SetUpIndexForFaceting()
+			i, err := SetUpIndexForFaceting("indexUID")
+			require.NoError(t, err)
 
 			if tt.args.request != nil && tt.args.request.Filter != nil {
 				gotTask, err := i.UpdateFilterableAttributes(tt.args.filter)
@@ -1732,7 +1732,7 @@ func TestIndex_GetDocuments(t *testing.T) {
 				testWaitForTask(t, i, gotTask)
 			}
 
-			err := i.GetDocuments(tt.args.request, tt.args.resp)
+			err = i.GetDocuments(tt.args.request, tt.args.resp)
 			require.NoError(t, err)
 			if tt.args.request != nil && tt.args.request.Limit != 0 {
 				require.Equal(t, tt.args.request.Limit, int64(len(tt.args.resp.Results)))

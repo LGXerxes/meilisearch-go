@@ -59,7 +59,7 @@ func (i Index) GetRankingRules() (resp []string, err error) {
 		endpoint:            "/indexes/" + i.UID + "/settings/ranking-rules",
 		method:              http.MethodGet,
 		withRequest:         nil,
-		withResponse:        resp,
+		withResponse:        &resp,
 		acceptedStatusCodes: []int{http.StatusOK},
 		functionName:        "GetRankingRules",
 	}
@@ -158,7 +158,7 @@ func (i Index) GetSearchableAttributes() (resp []string, err error) {
 		endpoint:            "/indexes/" + i.UID + "/settings/searchable-attributes",
 		method:              http.MethodGet,
 		withRequest:         nil,
-		withResponse:        resp,
+		withResponse:        &resp,
 		acceptedStatusCodes: []int{http.StatusOK},
 		functionName:        "GetSearchableAttributes",
 	}
@@ -207,7 +207,7 @@ func (i Index) GetDisplayedAttributes() (resp []string, err error) {
 		endpoint:            "/indexes/" + i.UID + "/settings/displayed-attributes",
 		method:              http.MethodGet,
 		withRequest:         nil,
-		withResponse:        resp,
+		withResponse:        &resp,
 		acceptedStatusCodes: []int{http.StatusOK},
 		functionName:        "GetDisplayedAttributes",
 	}
@@ -256,7 +256,7 @@ func (i Index) GetStopWords() (resp []string, err error) {
 		endpoint:            "/indexes/" + i.UID + "/settings/stop-words",
 		method:              http.MethodGet,
 		withRequest:         nil,
-		withResponse:        resp,
+		withResponse:        &resp,
 		acceptedStatusCodes: []int{http.StatusOK},
 		functionName:        "GetStopWords",
 	}
@@ -289,7 +289,7 @@ func (i Index) ResetStopWords() (resp *TaskInfo, err error) {
 		endpoint:            "/indexes/" + i.UID + "/settings/stop-words",
 		method:              http.MethodDelete,
 		withRequest:         nil,
-		withResponse:        resp,
+		withResponse:        &resp,
 		acceptedStatusCodes: []int{http.StatusAccepted},
 		functionName:        "ResetStopWords",
 	}
@@ -299,13 +299,13 @@ func (i Index) ResetStopWords() (resp *TaskInfo, err error) {
 	return resp, nil
 }
 
-func (i Index) GetSynonyms() (resp *map[string][]string, err error) {
-	resp = &map[string][]string{}
+func (i Index) GetSynonyms() (resp map[string][]string, err error) {
+	resp = map[string][]string{}
 	req := internalRequest{
 		endpoint:            "/indexes/" + i.UID + "/settings/synonyms",
 		method:              http.MethodGet,
 		withRequest:         nil,
-		withResponse:        resp,
+		withResponse:        &resp,
 		acceptedStatusCodes: []int{http.StatusOK},
 		functionName:        "GetSynonyms",
 	}
@@ -315,7 +315,7 @@ func (i Index) GetSynonyms() (resp *map[string][]string, err error) {
 	return resp, nil
 }
 
-func (i Index) UpdateSynonyms(request *map[string][]string) (resp *TaskInfo, err error) {
+func (i Index) UpdateSynonyms(request map[string][]string) (resp *TaskInfo, err error) {
 	resp = &TaskInfo{}
 	req := internalRequest{
 		endpoint:            "/indexes/" + i.UID + "/settings/synonyms",
@@ -354,7 +354,7 @@ func (i Index) GetFilterableAttributes() (resp []string, err error) {
 		endpoint:            "/indexes/" + i.UID + "/settings/filterable-attributes",
 		method:              http.MethodGet,
 		withRequest:         nil,
-		withResponse:        resp,
+		withResponse:        &resp,
 		acceptedStatusCodes: []int{http.StatusOK},
 		functionName:        "GetFilterableAttributes",
 	}
@@ -403,7 +403,7 @@ func (i Index) GetSortableAttributes() (resp []string, err error) {
 		endpoint:            "/indexes/" + i.UID + "/settings/sortable-attributes",
 		method:              http.MethodGet,
 		withRequest:         nil,
-		withResponse:        resp,
+		withResponse:        &resp,
 		acceptedStatusCodes: []int{http.StatusOK},
 		functionName:        "GetSortableAttributes",
 	}

@@ -1,3 +1,6 @@
 .idea
 meilisearch-go.iml
 vendor
+data.ms
+dumps
+meilisearch
